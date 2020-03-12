@@ -43,8 +43,8 @@ int binary_tree_is_full(const binary_tree_t *tree)
 	if (tree->right)
 		rsize = binary_tree_size(tree->right);
 
-	compare = lsize + rsize;
-	if (compare % 2 == 0)
+	compare = lsize - rsize;
+	if (compare == 0)
 		return (1);
 	else
 		return (0);
