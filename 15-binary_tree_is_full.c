@@ -23,6 +23,31 @@ size_t binary_tree_size(const binary_tree_t *tree)
 	return (size);
 }
 
+/**
+ * binary_tree_leaves - counts the leaves in a binary tree
+ * @tree: input tree
+ *
+ * Description: Function that counts the leaves in a binary tree
+ * Return: number of leaves
+ */
+size_t binary_tree_leaves(const binary_tree_t *tree)
+{
+	size_t count = 0;
+
+	if (tree == NULL)
+		return (0);
+
+	if (tree->left)
+		count += binary_tree_leaves(tree->left);
+
+	if (tree->right)
+		count += binary_tree_leaves(tree->right);
+
+	if (!tree->left && !tree->right)
+		count++;
+
+	return (count);
+}
 
 /**
  * binary_tree_is_full - checks if a binary tree is full
@@ -33,18 +58,16 @@ size_t binary_tree_size(const binary_tree_t *tree)
  */
 int binary_tree_is_full(const binary_tree_t *tree)
 {
-	size_t lsize = 0, rsize = 0, compare = 1;
+	size_t leave, node, node_calc;
 
 	if (tree == NULL)
 		return (0);
 
-	if (tree->left)
-		lsize = binary_tree_size(tree->left);
-	if (tree->right)
-		rsize = binary_tree_size(tree->right);
+	leave = binary_tree_leaves(tree);
+	node = binary_tree_size(tree);
+	node_calc = (2 * leave) - 1;
 
-	compare = lsize + rsize;
-	if (compare % 2 == 0)
+	if (node == node_calc)
 		return (1);
 	else
 		return (0);
