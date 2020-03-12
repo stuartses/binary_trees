@@ -1,5 +1,5 @@
 #include "binary_trees.h"
-#include <stdio.h>
+
 /**
  * binary_tree_balance - balance factor of a binary tree
  * @tree: input tree
