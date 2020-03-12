@@ -35,6 +35,9 @@ int binary_tree_is_full(const binary_tree_t *tree)
 {
 	size_t lsize = 0, rsize = 0, compare = 1;
 
+	if (tree == NULL)
+		return (0);
+
 	if (tree->left)
 		lsize = binary_tree_size(tree->left);
 	if (tree->right)
